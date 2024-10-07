@@ -15,6 +15,11 @@
     <!-- Import wheel links and joints -->
     <xacro:include filename="$(find swerve_robot_description)/urdf/include/robot_parts/wheel.xacro" />
 
+    <!-- Import sensors -->
+    <xacro:include filename="$(find swerve_robot_description)/urdf/include/sensors/imu.urdf.xacro" />
+    <xacro:include filename="$(find swerve_robot_description)/urdf/include/sensors/generic_laser.urdf.xacro" />
+    <xacro:include filename="$(find swerve_robot_description)/urdf/include/sensors/depth_sensor.urdf.xacro" />
+
     <!-- GENERATION, GENERATES THE ROBOT FROM MACROS -->
 
     <!-- Main chassis + dummy base link -->
@@ -32,6 +37,26 @@
     <xacro:wheel locationprefix="front_left" />
     <xacro:wheel locationprefix="rear_left" />
     <xacro:wheel locationprefix="rear_right" />
+
+
+    <!-- Sensors -->
+    <xacro:property name="laser_pose">
+      <origin xyz="-0.0475 0 0.425" rpy="0 0 0"/>
+    </xacro:property>
+
+    <xacro:property name="depth_sensor_pose">
+      <origin xyz="-0.065 0 0.455" rpy="0 0 0"/>
+    </xacro:property>
+
+    <xacro:imu/>
+    
+    <xacro:generic_laser>
+      <xacro:insert_block name="laser_pose" />
+    </xacro:generic_laser>
+    
+    <xacro:depth_sensor>
+      <xacro:insert_block name="depth_sensor_pose" />
+    </xacro:depth_sensor>
 
   </xacro:macro>
 
