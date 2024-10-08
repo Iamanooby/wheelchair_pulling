@@ -12,12 +12,12 @@ class OutputHoloTow(Node):
 
         self.cmd_vel_subscription = self.create_subscription(
             Twist,
-            'cmd_vel_req',
+            'cmd_vel',
             self.cmd_vel_callback,
             10)
         self.cmd_vel_subscription  # prevent unused variable warning
 
-        self.publisher_ = self.create_publisher(Twist, 'cmd_vel', 10)
+        self.publisher_ = self.create_publisher(Twist, 'cmd_vel_safe', 10)
 
 
     def cmd_vel_callback(self, msg):

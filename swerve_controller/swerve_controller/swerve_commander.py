@@ -78,7 +78,7 @@ class SwerveCommander(Node):
 
         # register cmd_vel subscriber
         self.cmd_vel_sub = self.create_subscription(
-            Twist, "/cmd_vel", self.twist_to_swerve, 10
+            Twist, "/cmd_vel_safe", self.twist_to_swerve, 10
         )
 
     def twist_to_swerve(self, msg: Twist) -> None:
