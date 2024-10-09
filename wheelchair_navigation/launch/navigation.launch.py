@@ -21,7 +21,7 @@ from launch.conditions import IfCondition
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node
 
-MAP_NAME='playground' #change to the name of your own map here
+MAP_NAME='aws_warehouse' #change to the name of your own map here
 
 def generate_launch_description():
     depth_sensor = os.getenv('LINOROBOT2_DEPTH_SENSOR', '')
@@ -31,7 +31,7 @@ def generate_launch_description():
     )
 
     rviz_config_path = PathJoinSubstitution(
-        [FindPackageShare('wheelchair_navigation'), 'rviz', 'linorobot2_navigation.rviz']
+        [FindPackageShare('wheelchair_navigation'), 'rviz', 'wheelchair_test.rviz']
     )
 
     default_map_path = PathJoinSubstitution(
@@ -45,13 +45,13 @@ def generate_launch_description():
     return LaunchDescription([
         DeclareLaunchArgument(
             name='sim', 
-            default_value='false',
+            default_value='true',
             description='Enable use_sime_time to true'
         ),
 
         DeclareLaunchArgument(
             name='rviz', 
-            default_value='false',
+            default_value='true',
             description='Run rviz'
         ),
 

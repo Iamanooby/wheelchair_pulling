@@ -42,7 +42,7 @@ def generate_launch_description():
     )
 
     rviz_config_path = PathJoinSubstitution(
-        [FindPackageShare('wheelchair_navigation'), 'rviz', 'linorobot2_slam.rviz']
+        [FindPackageShare('wheelchair_navigation'), 'rviz', 'wheelchair_test.rviz']
     )
     
     lc = LaunchContext()
@@ -54,13 +54,13 @@ def generate_launch_description():
     return LaunchDescription([
         DeclareLaunchArgument(
             name='sim', 
-            default_value='false',
+            default_value='true',#REMEMBER TO CHANGE TO FALSE WHEN RUNNING REAL ROBOT!!!
             description='Enable use_sime_time to true'
         ),
 
         DeclareLaunchArgument(
             name='rviz', 
-            default_value='false',
+            default_value='true',
             description='Run rviz'
         ),
 
