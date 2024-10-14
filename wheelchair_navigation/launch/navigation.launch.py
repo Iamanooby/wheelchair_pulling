@@ -31,7 +31,7 @@ def generate_launch_description():
     )
 
     rviz_config_path = PathJoinSubstitution(
-        [FindPackageShare('wheelchair_navigation'), 'rviz', 'wheelchair_test.rviz']
+        [FindPackageShare('wheelchair_navigation'), 'rviz', 'tb3.rviz']
     )
 
     default_map_path = PathJoinSubstitution(
