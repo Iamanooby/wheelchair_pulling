@@ -159,8 +159,9 @@ controller_server:
       trans_stopped_velocity: 0.25
       short_circuit_trajectory_evaluation: True
       stateful: True
-      critics: ["RotateToGoal", "Oscillation", "BaseObstacle", "GoalAlign", "PathAlign", "PathDist", "GoalDist"]
-      BaseObstacle.scale: 0.02
+      critics: ["RotateToGoal", "Oscillation", "ObstacleFootprintCritic", "GoalAlign", "PathAlign", "PathDist", "GoalDist"]
+      # BaseObstacle.scale: 0.02
+      ObstacleFootprintCritic.scale: 0.02
       PathAlign.scale: 32.0
       PathAlign.forward_point_distance: 0.1
       GoalAlign.scale: 24.0
@@ -187,8 +188,9 @@ local_costmap:
       width: 3
       height: 3
       resolution: 0.05
-      robot_radius: 0.48
-      # footprint: "[ [0.48, 0.18], [0.48, -0.18], [0, -0.18], [0, 0.18] ]" #assume wheelchair wheel no diameter. wheelchair centre 0.3m behind baselink
+      # robot_radius: 0.48
+      footprint_padding: 0.20
+      footprint: "[ [0.48, 0.18], [0.48, -0.18], [0, -0.18], [0, 0.18] ]" #assume wheelchair wheel no diameter. wheelchair centre 0.3m behind baselink
       plugins: ["voxel2d_layer", "voxel3d_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
@@ -261,8 +263,9 @@ global_costmap:
       global_frame: map
       robot_base_frame: base_footprint
       use_sim_time: False
-      robot_radius: 0.48
-      # footprint: "[ [0.48, 0.18], [0.48, -0.18], [0, -0.18], [0, 0.18] ]" #assume wheelchair wheel no diameter. wheelchair centre 0.3m behind baselink
+      # robot_radius: 0.48
+      footprint_padding: 0.20
+      footprint: "[ [0.48, 0.18], [0.48, -0.18], [0, -0.18], [0, 0.18] ]" #assume wheelchair wheel no diameter. wheelchair centre 0.3m behind baselink
       resolution: 0.05
       track_unknown_space: true
       plugins: ["static_layer", "voxel2d_layer","voxel3d_layer", "inflation_layer"]
