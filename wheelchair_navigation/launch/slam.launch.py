@@ -22,6 +22,7 @@ from launch.conditions import IfCondition
 from launch.substitutions import EnvironmentVariable
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node
+from ament_index_python.packages import get_package_share_directory    
 
 
 def generate_launch_description():
@@ -44,7 +45,11 @@ def generate_launch_description():
     rviz_config_path = PathJoinSubstitution(
         [FindPackageShare('wheelchair_navigation'), 'rviz', 'wheelchair_test.rviz']
     )
-    
+
+    offset_launch_param_file = os.path.join(
+        get_package_share_directory('wheelchair_navigation'), 'config', 'offset_launch_variables.yaml'
+    )
+
     lc = LaunchContext()
     ros_distro = EnvironmentVariable('ROS_DISTRO')
     slam_param_name = 'slam_params_file'
@@ -90,9 +95,47 @@ def generate_launch_description():
             parameters=[{'use_sim_time': LaunchConfiguration("sim")}]
         ),
 
+        # Node(
+        #     package='tf2_ros',
+        #     executable='static_transform_publisher',
+        #     name = "tf_baselink_to_basefootprint",
+        #     arguments = ['--x', '-0.30', '--y', '0', '--z', '0', '--yaw', '0', '--pitch', '0', '--roll', '0', '--frame-id', 'base_link', '--child-frame-id', 'base_footprint']
+        # ),
+
         Node(
-            package='tf2_ros',
-            executable='static_transform_publisher',
-            arguments = ['--x', '-0.30', '--y', '0', '--z', '0', '--yaw', '0', '--pitch', '0', '--roll', '0', '--frame-id', 'base_link', '--child-frame-id', 'base_footprint']
+            package='convert_cmd_vel',
+            executable='output_holo_tow',
+            name='output_holo_tow',
+            output='screen',
+            emulate_tty=True,
         ),
+
+
+        # Node(
+        #     package='convert_cmd_vel',
+        #     executable='output_holo_tow',
+        #     name='output_holo_tow',
+        #     output='screen',
+        #     emulate_tty=True,
+        #     parameters=[{'wheelchair_basefootprint_to_robot_baselink': 1.00}]
+        # ),
+
+        # Node(
+        #     package='tf2_ros',
+        #     executable='static_transform_publisher',
+        #     name = "tf_baselink_to_basefootprint",
+        #     parameters=[offset_launch_param_file]
+        #     #arguments = ['--x', '-0.30', '--y', '0', '--z', '0', '--yaw', '0', '--pitch', '0', '--roll', '0', '--frame-id', 'base_link', '--child-frame-id', 'base_footprint']
+        # ),
+
+
+        # Node(
+        #     package='convert_cmd_vel',
+        #     executable='output_holo_tow',
+        #     name='output_holo_tow',
+        #     output='screen',
+        #     emulate_tty=True,
+        #     parameters=[offset_launch_param_file]
+        # ),
+
     ])

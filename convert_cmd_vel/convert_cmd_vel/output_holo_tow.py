@@ -3,12 +3,19 @@ from rclpy.node import Node
 
 from geometry_msgs.msg import Twist
 
-radius = 0.3
+
+
+# radius = 0.3
 
 class OutputHoloTow(Node):
 
     def __init__(self):
         super().__init__('output_holo_tow')
+
+        self.declare_parameter('wheelchair_basefootprint_to_robot_baselink', 0.30)  # Declare a double parameter with a default value
+
+        self.radius = self.get_parameter('wheelchair_basefootprint_to_robot_baselink').get_parameter_value().double_value  # Retrieve the double value
+
 
         self.cmd_vel_subscription = self.create_subscription(
             Twist,
@@ -26,11 +33,11 @@ class OutputHoloTow(Node):
         az = msg.angular.z
 
         pubCmdMsg.linear.x = vx
-        pubCmdMsg.linear.y = radius*az
+        pubCmdMsg.linear.y = self.radius*az
         pubCmdMsg.angular.z = az
         self.publisher_.publish(pubCmdMsg)
 
-        self.get_logger().info(f'X: {pubCmdMsg.linear.x}, Y : {pubCmdMsg.linear.y}, Z : {pubCmdMsg.angular.z} ')
+        self.get_logger().debug(f'X: {pubCmdMsg.linear.x}, Y : {pubCmdMsg.linear.y}, Z : {pubCmdMsg.angular.z} ')
 
 
 

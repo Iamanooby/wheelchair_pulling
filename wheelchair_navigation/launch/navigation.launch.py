@@ -24,7 +24,7 @@ from launch_ros.actions import Node
 MAP_NAME='aws_warehouse' #change to the name of your own map here
 
 def generate_launch_description():
-    depth_sensor = os.getenv('LINOROBOT2_DEPTH_SENSOR', '')
+    # depth_sensor = os.getenv('LINOROBOT2_DEPTH_SENSOR', '')
 
     nav2_launch_path = PathJoinSubstitution(
         [FindPackageShare('nav2_bringup'), 'launch', 'bringup_launch.py']
@@ -85,4 +85,13 @@ def generate_launch_description():
             executable='static_transform_publisher',
             arguments = ['--x', '-0.30', '--y', '0', '--z', '0', '--yaw', '0', '--pitch', '0', '--roll', '0', '--frame-id', 'base_link', '--child-frame-id', 'base_footprint']
         ),
+
+        Node(
+            package='convert_cmd_vel',
+            executable='output_holo_tow',
+            name='output_holo_tow',
+            output='screen',
+            emulate_tty=True,
+        ),
+
     ])
