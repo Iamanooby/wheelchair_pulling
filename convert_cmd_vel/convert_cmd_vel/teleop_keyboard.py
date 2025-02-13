@@ -55,7 +55,7 @@ WAFFLE_MAX_LIN_VEL = 1.0
 WAFFLE_MAX_ANG_VEL = 1.82
 
 LIN_VEL_STEP_SIZE = 0.05
-ANG_VEL_STEP_SIZE = 0.001
+ANG_VEL_STEP_SIZE = 0.1
 
 TURTLEBOT3_MODEL = "burger"
 
@@ -145,7 +145,7 @@ def main():
 
     qos = QoSProfile(depth=10)
     node = rclpy.create_node('teleop_keyboard')
-    pub = node.create_publisher(Twist, 'cmd_vel_request', qos)
+    pub = node.create_publisher(Twist, 'cmd_vel', qos)
 
     status = 0
     target_linear_velocity = 0.0
