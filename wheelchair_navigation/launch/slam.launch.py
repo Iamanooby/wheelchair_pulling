@@ -85,15 +85,15 @@ def generate_launch_description():
             }.items()
         ),
 
-        Node(
-            package='rviz2',
-            executable='rviz2',
-            name='rviz2',
-            output='screen',
-            arguments=['-d', rviz_config_path],
-            condition=IfCondition(LaunchConfiguration("rviz")),
-            parameters=[{'use_sim_time': LaunchConfiguration("sim")}]
-        ),
+        # Node(
+        #     package='rviz2',
+        #     executable='rviz2',
+        #     name='rviz2',
+        #     output='screen',
+        #     arguments=['-d', rviz_config_path],
+        #     condition=IfCondition(LaunchConfiguration("rviz")),
+        #     parameters=[{'use_sim_time': LaunchConfiguration("sim")}]
+        # ),
 
         # Node(
         #     package='tf2_ros',
