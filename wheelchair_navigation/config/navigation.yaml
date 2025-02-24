@@ -132,13 +132,13 @@ controller_server:
 
       plugin: "dwb_core::DWBLocalPlanner"
       debug_trajectory_details: True
-      min_vel_x: -0.4
+      min_vel_x: -0.2
       min_vel_y: 0.0
-      max_vel_x: 0.4
+      max_vel_x: 0.2
       max_vel_y: 0.0
-      max_vel_theta: 0.75
+      max_vel_theta: 0.2
       min_speed_xy: 0.0
-      max_speed_xy: 0.4
+      max_speed_xy: 0.2
       min_speed_theta: 0.0
       # Add high threshold velocity for turtlebot 3 issue.
       # https://github.com/ROBOTIS-GIT/turtlebot3_simulations/issues/75
@@ -197,19 +197,19 @@ local_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
-        inflation_radius: 0.55
+        inflation_radius: 0.1
       voxel2d_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
         observation_sources: scan base_scan
         scan:
-          topic: /scan
+          topic: /filter_scan
           max_obstacle_height: 2.0
           clearing: True
           marking: True
           data_type: "LaserScan"
         base_scan:
-          topic: /base/scan
+          topic: /base/filter_scan
           max_obstacle_height: 2.0
           clearing: True
           marking: True
@@ -226,7 +226,7 @@ local_costmap:
         min_obstacle_height: 0.00
         max_obstacle_height: 2.0 
         scan:
-          topic: /scan
+          topic: /filter_scan
           max_obstacle_height: 2.0
           clearing: True
           marking: True
@@ -277,13 +277,13 @@ global_costmap:
         enabled: True
         observation_sources: scan base_scan
         scan:
-          topic: /scan
+          topic: /filter_scan
           max_obstacle_height: 2.0
           clearing: True
           marking: True
           data_type: "LaserScan"
         base_scan:
-          topic: /base/scan
+          topic: /base/filter_scan
           max_obstacle_height: 2.0
           clearing: True
           marking: True
@@ -300,7 +300,7 @@ global_costmap:
         min_obstacle_height: 0.00
         max_obstacle_height: 2.0 
         scan:
-          topic: /scan
+          topic: /filter_scan
           max_obstacle_height: 2.0
           clearing: True
           marking: True
