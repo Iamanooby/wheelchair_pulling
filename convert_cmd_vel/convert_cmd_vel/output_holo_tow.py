@@ -12,7 +12,7 @@ class OutputHoloTow(Node):
     def __init__(self):
         super().__init__('output_holo_tow')
 
-        self.declare_parameter('wheelchair_basefootprint_to_robot_baselink', 0.30)  # Declare a double parameter with a default value
+        self.declare_parameter('wheelchair_basefootprint_to_robot_baselink', 0.87)  # Declare a double parameter with a default value
 
         self.radius = self.get_parameter('wheelchair_basefootprint_to_robot_baselink').get_parameter_value().double_value  # Retrieve the double value
 

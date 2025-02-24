@@ -70,21 +70,21 @@ def generate_launch_description():
             }.items()
         ),
 
-        Node(
-            package='rviz2',
-            executable='rviz2',
-            name='rviz2',
-            output='screen',
-            arguments=['-d', rviz_config_path],
-            condition=IfCondition(LaunchConfiguration("rviz")),
-            parameters=[{'use_sim_time': LaunchConfiguration("sim")}]
-        ),
+        # Node(
+        #     package='rviz2',
+        #     executable='rviz2',
+        #     name='rviz2',
+        #     output='screen',
+        #     arguments=['-d', rviz_config_path],
+        #     condition=IfCondition(LaunchConfiguration("rviz")),
+        #     parameters=[{'use_sim_time': LaunchConfiguration("sim")}]
+        # ),
 
-        Node(
-            package='tf2_ros',
-            executable='static_transform_publisher',
-            arguments = ['--x', '-0.30', '--y', '0', '--z', '0', '--yaw', '0', '--pitch', '0', '--roll', '0', '--frame-id', 'base_link', '--child-frame-id', 'base_footprint']
-        ),
+        # Node(
+        #     package='tf2_ros',
+        #     executable='static_transform_publisher',
+        #     arguments = ['--x', '-0.30', '--y', '0', '--z', '0', '--yaw', '0', '--pitch', '0', '--roll', '0', '--frame-id', 'base_link', '--child-frame-id', 'base_footprint']
+        # ),
 
         Node(
             package='convert_cmd_vel',
