@@ -19,7 +19,7 @@ class FilterScanNode(Node):
         angles = np.linspace(msg.angle_min, msg.angle_max, num_ranges)
         
         # Mask out the ranges within ±40 degrees (converted to radians)
-        mask = (angles < -np.deg2rad(40)) | (angles > np.deg2rad(40))
+        mask = (angles < -np.deg2rad(50)) | (angles > np.deg2rad(50))
         filtered_ranges = np.array(msg.ranges)
         filtered_ranges[~mask] = float('inf')  # Set removed values to infinity
         

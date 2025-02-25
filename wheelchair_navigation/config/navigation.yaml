@@ -136,7 +136,7 @@ controller_server:
       min_vel_y: 0.0
       max_vel_x: 0.2
       max_vel_y: 0.0
-      max_vel_theta: 0.2
+      max_vel_theta: 0.05
       min_speed_xy: 0.0
       max_speed_xy: 0.2
       min_speed_theta: 0.0
@@ -191,7 +191,7 @@ local_costmap:
       # robot_radius: 0.48
       footprint_padding: 0.20
       #0.34 for one side. 0.87 from baselink to robot centre
-      footprint: "[ [1.05, 0.55], [1.05, -0.55], [0, -0.55], [0, 0.55] ]" #assume wheelchair wheel no diameter. wheelchair centre 0.3m behind baselink
+      footprint: "[ [1.05, 0.35], [1.05, -0.35], [0, -0.35], [0, 0.35] ]" #assume wheelchair wheel no diameter. wheelchair centre 0.3m behind baselink
       # footprint: "[ [0.48, 0.18], [0.48, -0.18], [0, -0.18], [0, 0.18] ]" #assume wheelchair wheel no diameter. wheelchair centre 0.3m behind baselink
       plugins: ["voxel2d_layer", "voxel3d_layer", "inflation_layer"]
       inflation_layer:
@@ -268,7 +268,7 @@ global_costmap:
       # robot_radius: 0.48
       footprint_padding: 0.20
       # footprint: "[ [0.48, 0.18], [0.48, -0.18], [0, -0.18], [0, 0.18] ]" #assume wheelchair wheel no diameter. wheelchair centre 0.3m behind baselink
-      footprint: "[ [1.05, 0.55], [1.05, -0.55], [0, -0.55], [0, 0.55] ]" #assume wheelchair wheel no diameter. wheelchair centre 0.3m behind baselink
+      footprint: "[ [1.05, 0.35], [1.05, -0.35], [0, -0.35], [0, 0.35] ]" #assume wheelchair wheel no diameter. wheelchair centre 0.3m behind baselink
       resolution: 0.05
       track_unknown_space: true
       plugins: ["static_layer", "voxel2d_layer","voxel3d_layer", "inflation_layer"]

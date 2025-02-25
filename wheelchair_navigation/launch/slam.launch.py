@@ -50,6 +50,10 @@ def generate_launch_description():
         get_package_share_directory('wheelchair_navigation'), 'config', 'offset_launch_variables.yaml'
     )
 
+    lidar_launch_path = PathJoinSubstitution(
+        [FindPackageShare('rplidar_ros'), 'launch', 'rplidar_a2m8_launch.py']
+    )
+
     lc = LaunchContext()
     ros_distro = EnvironmentVariable('ROS_DISTRO')
     slam_param_name = 'slam_params_file'
@@ -57,16 +61,22 @@ def generate_launch_description():
         slam_param_name = 'params_file'
 
     return LaunchDescription([
-        DeclareLaunchArgument(
-            name='sim', 
-            default_value='true',#REMEMBER TO CHANGE TO FALSE WHEN RUNNING REAL ROBOT!!!
-            description='Enable use_sime_time to true'
-        ),
+        # DeclareLaunchArgument(
+        #     name='sim', 
+        #     default_value='true',#REMEMBER TO CHANGE TO FALSE WHEN RUNNING REAL ROBOT!!!
+        #     description='Enable use_sime_time to true'
+        # ),
+
+        # DeclareLaunchArgument(
+        #     name='rviz', 
+        #     default_value='true',
+        #     description='Run rviz'
+        # ),
 
         DeclareLaunchArgument(
-            name='rviz', 
-            default_value='true',
-            description='Run rviz'
+            name='sim', 
+            default_value='false',
+            description='Enable use_sime_time to true'
         ),
 
         IncludeLaunchDescription(
@@ -82,6 +92,13 @@ def generate_launch_description():
             launch_arguments={
                 'use_sim_time': LaunchConfiguration("sim"),
                 slam_param_name: slam_config_path
+            }.items()
+        ),
+
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(lidar_launch_path),
+            launch_arguments={
+                'frame_id': 'base_scan'
             }.items()
         ),
 
@@ -106,6 +123,14 @@ def generate_launch_description():
             package='convert_cmd_vel',
             executable='output_holo_tow',
             name='output_holo_tow',
+            output='screen',
+            emulate_tty=True,
+        ),
+
+        Node(
+            package='convert_cmd_vel',
+            executable='filter_scan',
+            name='filter_scan',
             output='screen',
             emulate_tty=True,
         ),
