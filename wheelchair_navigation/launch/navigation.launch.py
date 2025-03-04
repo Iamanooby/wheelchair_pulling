@@ -22,7 +22,11 @@ from launch_ros.substitutions import FindPackageShare
 from launch_ros.actions import Node
 
 # MAP_NAME='aws_warehouse' #change to the name of your own map here\
-MAP_NAME='b2l4_big_3'
+# MAP_NAME='b2l4_big_3'
+# MAP_NAME='playground'
+# MAP_NAME= 'b2l4_big_3_comp'
+MAP_NAME= 'b2l4_big_3_comp_crop'
+
 
 def generate_launch_description():
     # depth_sensor = os.getenv('LINOROBOT2_DEPTH_SENSOR', '')

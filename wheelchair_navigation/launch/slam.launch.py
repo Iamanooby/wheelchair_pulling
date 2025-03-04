@@ -30,6 +30,10 @@ def generate_launch_description():
         [FindPackageShare('slam_toolbox'), 'launch', 'online_async_launch.py']
     )
 
+    # slam_launch_path = PathJoinSubstitution(
+    #     [FindPackageShare('slam_toolbox'), 'launch', 'localization_launch.py']
+    # )
+
     slam_config_path = PathJoinSubstitution(
         [FindPackageShare('wheelchair_navigation'), 'config', 'slam.yaml']
     )

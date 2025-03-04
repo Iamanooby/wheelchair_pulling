@@ -16,6 +16,7 @@ slam_toolbox:
     # scan_topic: /scan
     scan_topic: /filter_scan
     mode: mapping #localization
+    # mode: localization
 
     # if you'd like to immediately start continuing a map at a given pose
     # or at the dock, but they are mutually exclusive, if pose is given
@@ -23,6 +24,12 @@ slam_toolbox:
     #map_file_name: test_steve
     # map_start_pose: [0.0, 0.0, 0.0]
     #map_start_at_dock: true
+
+    # map_file_name: b2l4_big_3
+    # map_file_name: "/home/arms/Workspaces/wheelchair_navigation_ws/src/wheelchair_pulling/wheelchair_navigation/maps/b2l4_big_3.data"
+    # map_file_name: "maps/b2l4_big_3.data"
+    # map_start_pose: [0.0, 0.0, 0.0]
+    # map_start_at_dock: true
 
     debug_logging: true
     throttle_scans: 1
