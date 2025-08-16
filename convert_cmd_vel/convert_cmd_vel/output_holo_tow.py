@@ -17,9 +17,14 @@ class OutputHoloTow(Node):
         self.radius = self.get_parameter('wheelchair_basefootprint_to_robot_baselink').get_parameter_value().double_value  # Retrieve the double value
 
 
+        # self.cmd_vel_subscription = self.create_subscription(
+        #     Twist,
+        #     'cmd_vel',
+        #     self.cmd_vel_callback,
+        #     10)
         self.cmd_vel_subscription = self.create_subscription(
             Twist,
-            'cmd_vel',
+            'cmd_vel_test',
             self.cmd_vel_callback,
             10)
         self.cmd_vel_subscription  # prevent unused variable warning
