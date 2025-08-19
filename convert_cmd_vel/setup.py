@@ -21,6 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             'teleop_keyboard = convert_cmd_vel.teleop_keyboard:main',
+            'teleop_joy = convert_cmd_vel.teleop_joy:main',
             'output_holo_tow = convert_cmd_vel.output_holo_tow:main',
             'filter_scan = convert_cmd_vel.filter_scan_angle:main',
         ],
