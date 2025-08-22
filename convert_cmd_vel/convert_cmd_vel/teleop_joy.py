@@ -12,7 +12,7 @@ class TeleopJoy(Node):
         # QoS profile
         qos = QoSProfile(depth=10)
         self.max_x = 0.22
-        self.max_w = 0.25
+        self.max_w = 1.0
         # Publisher
         self.pub = self.create_publisher(Twist, 'cmd_vel_test', qos)
         
