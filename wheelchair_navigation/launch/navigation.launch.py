@@ -50,7 +50,7 @@ def generate_launch_description():
     )
 
     lidar_launch_path = PathJoinSubstitution(
-        [FindPackageShare('rplidar_ros'), 'launch', 'rplidar_a2m8_launch.py']
+        [FindPackageShare('rplidar_ros'), 'launch', 'rplidar_a3_launch.py']
     )
 
     return LaunchDescription([
